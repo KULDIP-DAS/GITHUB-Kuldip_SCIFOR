@@ -1,3 +1,0 @@
-1.What are semanic elements?
-ans= Semantic elements in HTML provide meaning to the content they enclose, improving both accessibility and search engine optimization. 
-Examples include <article>, <section>, <header>, and <footer>, which clearly define the structure and purpose of the content.
