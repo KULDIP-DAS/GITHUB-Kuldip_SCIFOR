@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Data Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f7f7f7;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="fetchData()">Fetch Data</button>
+
+    <script>
+        function fetchData() {
+            const serverAddress = 'https://jsonplaceholder.typicode.com/users';
+            let fetchRes = fetch(serverAddress, { method: 'GET' });
+
+            fetchRes
+                .then(res => res.json())
+                .then(data => {
+                    let output = '<h3>Users Data:</h3>';
+                    data.forEach(user => {
+                        output += `<p>ID: ${user.id} - Name: ${user.name} - Email: ${user.email}</p>`;
+                    });
+                    document.write(output);
+                })
+                .catch(err => console.log(err));
+        }
+    </script>
+
+</body>
+</html>
