@@ -1,7 +1,0 @@
-1. what is CSS?
-ans) CSS stands for Cascading Style Sheets is a stylesheet language used for describing the presentation of a document written in HTML. The different types of selectors are universal selectors, Type Selector,
-Class Selector and Id selector.
-
-2.what is CSS box model?
-ans) The CSS box model is a fundamental concept that defines how the element's dimensions and spacing are calculated.The box model treats every HTML element as a rectangular box consisting of 
-content, padding, border, and margin. 
