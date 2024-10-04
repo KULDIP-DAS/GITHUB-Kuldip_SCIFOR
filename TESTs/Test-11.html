@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test-11</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.15.0/babel.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            text-align: center;
+            background-color: orangered;
+        }
+        input {
+            margin: 10px;
+            padding: 8px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // Component 1: User Input Component
+        class Component1 extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    name: '',
+                    lname: ''
+                };
+            }
+
+            handleChange = (e) => {
+                this.setState({ [e.target.name]: e.target.value });
+            };
+
+            handleSubmit = () => {
+                this.props.onSubmit(this.state.name, this.state.lname);
+            };
+
+            render() {
+                return (
+                    <div>
+                        <h1>Enter Your Details</h1>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="First Name"
+                            value={this.state.name}
+                            onChange={this.handleChange}
+                        />
+                        <input
+                            type="text"
+                            name="lname"
+                            placeholder="Last Name"
+                            value={this.state.lname}
+                            onChange={this.handleChange}
+                        />
+                        <button onClick={this.handleSubmit}>Submit</button>
+                    </div>
+                );
+            }
+        }
+
+        
+        class Component2 extends React.Component {
+            render() {
+                const { name, lname } = this.props;
+                return (
+                    <div>
+                        <h2>User Details</h2>
+                        <p>First Name: {name}</p>
+                        <p>Last Name: {lname}</p>
+                    </div>
+                );
+            }
+        }
+
+        class App extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    name: '',
+                    lname: ''
+                };
+            }
+
+            handleUserInput = (name, lname) => {
+                this.setState({ name, lname });
+            };
+
+            render() {
+                return (
+                    <div>
+                        <Component1 onSubmit={this.handleUserInput} />
+                        <Component2 name={this.state.name} lname={this.state.lname} />
+                    </div>
+                );
+            }
+        }
+
+    
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+
+</body>
+</html>
