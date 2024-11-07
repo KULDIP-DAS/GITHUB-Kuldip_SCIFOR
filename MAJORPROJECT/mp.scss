@@ -1,0 +1,627 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+
+$playColor: #1db954;
+$playColorlight: #14e95e;
+$backgroundColorLight: #121212;
+$backgroundColor: #000;
+$controlStrip: #242424;
+$fontColor: #b3b3b3;
+$highlightColor: #fff;
+$activeTab: #f0f0f028;
+$boxBorder: #f0f0f019;
+$shadow: 0px 0px 15px rgba(2, 2, 2, 0.2);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    background-image: radial-gradient(
+        circle farthest-corner at 10% 20%,
+        #1db954 0%,
+        #85faae 100.2%
+      );
+  font-family: "Lato", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  min-height: 100vh;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+// CONTENT
+.device {
+  &.device::-webkit-scrollbar {
+    width: 12px;
+  }
+  &.device::-webkit-scrollbar-track {
+    background: $backgroundColorLight;
+    border-radius: 5px;
+  }
+  &.device::-webkit-scrollbar-thumb {
+    background-color: $playColorlight;
+    border-radius: 20px;
+    border: 2px solid $backgroundColorLight;
+  }
+  position: relative;
+  width: 75vw;
+  max-height: 75vh;
+  background-color: $backgroundColorLight;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+  color: $fontColor;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+  border-radius: 10px 10px 0 0;
+
+  // SIDEBAR
+  aside {
+    background-color: $backgroundColor;
+    width: 225px;
+    min-height: 500vh;
+    padding: 0 6px;
+    padding-top: 24px;
+    
+    .logo {
+      width: 100%;
+      margin-bottom: 18px;
+      padding-left: 24px;
+      img {
+        width: 130px;
+      }
+    }
+
+    .general-options,
+    .playlist-options,
+    .playlists {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .playlist-options {
+      margin-top: 15px;
+      span {
+        padding: 8px 0;
+        padding-left: 24px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+    }
+
+    .playlists {
+      border-top: 1px solid $activeTab;
+      margin-top: 5px;
+      padding-top: 5px;
+    }
+  }
+
+  .option {
+    cursor: pointer;
+    width: 100%;
+    padding: 8px 0;
+    padding-left: 24px;
+    display: flex;
+    align-items: center;
+    transition: color 0.1s ease;
+    color: #b3b3b3 ;
+    text-decoration: none;
+    i {
+      width: 40px;
+      font-size: 20px;
+    }
+    &.active {
+      background-color: $activeTab;
+      border-radius: 4px;
+      color: $highlightColor;
+      text-shadow: $shadow;
+    }
+    &:hover {
+      color: $highlightColor;
+      text-shadow: $shadow;
+    }
+  }
+
+  // MAIN AREA
+  .container {
+    flex: 1;
+    padding: 10px 25px;
+
+    // HEADER & PROFILE STRIP
+    header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+      height: 4vh;
+      .head-btns {
+        i {
+          visibility: hidden;
+          cursor: pointer;
+          font-size: 1.1rem;
+          background-color: $backgroundColor;
+          color: $highlightColor;
+          padding: 10px;
+          border-radius: 50%;
+        }
+      }
+      .profile {
+        width: 130px;
+        background-color: $backgroundColor;
+        color: $highlightColor;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 18px;
+        img {
+          width: 28px;
+          border-radius: 50%;
+        }
+        i {
+          padding-bottom: 2px;
+        }
+      }
+    }
+
+    // MAIN DASHBOARD
+    .collection-strip {
+      width: 100%;
+      margin-top: 10px;
+      .title-strip {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        padding-right: 30px;
+        button {
+          cursor: pointer;
+          background-color: transparent;
+          border: none;
+          color: $highlightColor;
+          text-transform: uppercase;
+          text-shadow: $shadow;
+          letter-spacing: 1px;
+          font-weight: 700;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        h3 {
+          color: $highlightColor;
+          font-size: 1.4rem;
+          text-shadow: $shadow;
+        }
+      }
+
+      // COLLECTIONS
+      .inner-strip {
+        display: flex;
+        flex-wrap: wrap;
+        .box-item {
+          position: relative;
+          cursor: pointer;
+          margin-top: 18px;
+          width: 180px;
+          height: 250px;
+          margin-left: 20px;
+          background-color: $boxBorder;
+          border-radius: 5px;
+          color: $highlightColor;
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          padding: 20px;
+          .box-item__image {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            img {
+              width: 140px;
+            }
+          }
+          h4 {
+            font-size: 1rem;
+            
+          }
+          p {
+            font-size: 12px;
+          }
+          &:hover {
+            background-color: $controlStrip;
+          }
+        }
+      }
+    }
+  }
+}
+
+// SONG CONTROL STRIP
+.song-control {
+  width: 75vw;
+  padding: 25px 0;
+  color: $highlightColor;
+  background-color: $controlStrip;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 10px 10px;
+  .song-control__inner {
+    width: 470px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .song-control__buttons {
+      display: flex;
+      align-items: center;
+      i {
+        cursor: pointer;
+        font-size: 1rem;
+        margin: 0 8px;
+        transition: color 0.2s ease-out;
+        &:nth-child(3) {
+          font-size: 1.5rem;
+        }
+        &:hover {
+          color: $playColorlight;
+        }
+      }
+      margin-bottom: 10px;
+    }
+    .song-control__timeline {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      .timeline {
+        position: relative;
+        width: 400px;
+        height: 4px;
+        background-color: #646464;
+        border-radius: 50px;
+        .timeline-fill {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;
+          width: 310px;
+          height: 4px;
+          background-color: $playColorlight;
+          border-radius: 50px;
+        }
+      }
+    }
+  }
+}
+
+// BREAKPOINTS
+@media (max-width: 800px) {
+  .song-control {
+    .song-control__inner {
+      width: 270px;
+      .song-control__timeline {
+        .timeline {
+          width: 200px;
+          .timeline-fill {
+            width: 160px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .device {
+    aside {
+      display: none;
+    }
+    .container {
+      header {
+        .head-btns {
+          i {
+            visibility: visible;
+          }
+        }
+      }
+      .collection-strip {
+        .inner-strip {
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+    .song-control {
+      .song-control__close {
+        display: none;
+      }
+    }
+  }
+}
+
+  .custom-link {
+    text-decoration: none; /* Remove underline */
+    color: white; /* Set link color */
+    transition: transform 0.2s ease-in-out; /* Smooth transition effect */
+  }
+
+  .custom-link:hover {
+    text-decoration: underline; /* Show underline on hover */
+    transform: scale(1.1); /* Pop-up effect */
+  }
+
+
+
+  // Buttons-->
+  .auth-buttons button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    color: black;
+    background-color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+    
+}
+
+.auth-buttons button:hover {
+    background-color: black;
+    color: white;
+}
+
+
+// popup
+
+.search-popup {
+  display: none; /* Hide by default */
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 40px;
+  padding: 20px;
+  z-index: 1000; /* Ensure it appears on top */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-popup input {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 40px;
+}
+
+.search-popup button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  background-color: #1DB954; /* Spotify green */
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Create Playlist Form Styles */
+#create-playlist-form {
+  background-color: #282828; /* Dark background for form */
+  color: #ffffff; /* White text for contrast */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Spacing inside the form */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Subtle shadow effect */
+  width: 400px; /* Set a max width for the form */
+  margin: 0 auto; /* Center the form */
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+}
+
+/* Form header */
+#create-playlist-form h3 {
+  margin-bottom: 20px; /* Space below the header */
+  font-size: 24px; /* Font size for the header */
+}
+
+/* Label styles */
+#create-playlist-form label {
+  margin-bottom: 5px; /* Space below the label */
+  font-weight: bold; /* Bold labels */
+}
+
+/* Input and textarea styles */
+#create-playlist-form input[type="text"],
+#create-playlist-form textarea {
+  background-color: #404040; /* Dark background for input */
+  border: none; /* Remove default border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 10px; /* Spacing inside input */
+  color: #ffffff; /* White text */
+  margin-bottom: 15px; /* Space below inputs */
+  font-size: 16px; /* Font size for inputs */
+}
+
+/* Button styles */
+#create-playlist-form button {
+  background-color: #1db954; /* Spotify green */
+  color: white; /* Text color for buttons */
+  border: none; /* Remove default border */
+  border-radius: 20px; /* Rounded corners for buttons */
+  padding: 10px 15px; /* Spacing inside buttons */
+  cursor: pointer; /* Change cursor on hover */
+  transition: background-color 0.3s ease; /* Transition for hover effect */
+}
+
+#create-playlist-form button:hover {
+  background-color: #1aa34a; /* Darker green on hover */
+}
+
+/* Adjust for responsive design */
+@media (max-width: 480px) {
+  #create-playlist-form {
+      width: 90%; /* Allow form to be responsive on smaller screens */
+  }
+}
+
+
+/* Modal Overlay Styles */
+#liked-songs-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Ensure the modal is above other content */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it sits above other content */
+}
+
+/* Modal */
+#liked-songs-modal {
+  background-color: #fff; /* White background */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px;
+  max-width: 400px; /* Set max width */
+  width: 100%; /* Full width up to max width */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  text-align: center; /* Center text */
+  position: relative; /* For positioning the close button */
+}
+
+/* Button */
+#liked-songs-modal button {
+  background-color: #ff4757; /* Red button */
+  color: white; /* White text */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 15px; /* Padding for the button */
+  cursor: pointer; /* Pointer on hover */
+  font-size: 16px; /* Font size */
+  margin-top: 15px; /* Space above button */
+}
+
+#liked-songs-modal button:hover {
+  background-color: #e84118; /* Darker red on hover */
+}
+
+/* List Styles */
+#liked-songs-modal ul {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+#liked-songs-modal li {
+  padding: 10px 0; /* Space between items */
+  border-bottom: 1px solid #ccc; /* Separator line */
+}
+
+#liked-songs-modal li:last-child {
+  border-bottom: none; /* Remove bottom border from last item */
+}
+
+// play button -- 
+body {
+  background-color: #121212; /* Dark background */
+  color: #ffffff; /* White text color */
+  font-family: 'Arial', sans-serif; /* Clean font */
+  margin: 0; /* Remove default margin */
+  display: flex;
+  justify-content: center; /* Center the box-item */
+  align-items: center; /* Center the box-item */
+  height: 100vh; /* Full viewport height */
+}
+
+.box-item {
+  position: relative; /* Position for absolute positioning of the button */
+  background-color: #1db954; /* Spotify green */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Ensures the play button stays within the image bounds */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  transition: transform 0.3s ease; /* Scale effect on hover */
+}
+
+.box-item:hover {
+  transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+.box-item__image {
+  overflow: hidden; /* Ensures the play button stays within the image bounds */
+  position: relative; /* Position for child elements */
+}
+
+.box-item img {
+  display: block; /* Removes bottom space for inline images */
+  width: 100%; /* Responsive image */
+  height: auto; /* Maintains aspect ratio */
+  border-radius: 8px 8px 0 0; /* Rounded corners on top */
+}
+
+/* Play Button */
+.play-button {
+  position: absolute; /* Position it over the image */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust positioning */
+  font-size: 40px; /* Size of the button */
+  color: white; /* Color of the button */
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  border-radius: 50%; /* Circular button */
+  padding: 10px; /* Space around the icon */
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease; /* Fade-in effect */
+}
+
+/* Show button on hover */
+.box-item__image:hover .play-button {
+  opacity: 1; /* Show button on hover */
+}
+
+h4 {
+  margin: 10px 0 5px; /* Margin for heading */
+  font-size: 1.2em; /* Heading size */
+}
+
+p {
+  margin: 0; /* Remove default margin */
+  color: #b3b3b3; /* Lighter text color for description */
+}
+
+.custom-link {
+  text-decoration: none; /* Remove underline */
+  color: #ffffff; /* White text color */
+}
+
+.custom-link:hover {
+  text-decoration: underline; /* Underline on hover */
+}
